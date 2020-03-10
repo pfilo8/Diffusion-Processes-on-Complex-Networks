@@ -1,0 +1,16 @@
+Source,Target
+Alice,Bob
+Carl,Alice
+Alice,David
+Alice,Ernst
+Alice,Frank
+Bob,Gail
+Gail,Harry
+Harry,Jen
+Jen,Gail
+Harry,Irene
+Irene,Gail
+Irene,Jen
+Ernst,Frank
+David,Carl
+Carl,Frank
