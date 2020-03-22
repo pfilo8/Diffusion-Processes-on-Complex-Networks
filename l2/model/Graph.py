@@ -33,8 +33,8 @@ class Graph:
         self.vertList[u].addNeighbour(self.vertList[v], weight)
         self.vertList[v].addNeighbour(self.vertList[u], weight)
 
-    def addEdgesFromList(self, vertexList):
-        for u, v in vertexList:
+    def addEdgesFromList(self, edgesList):
+        for u, v in edgesList:
             self.addEdge(u, v)
 
     def getVertex(self, vert):
@@ -117,6 +117,10 @@ class Graph:
             vert.fin = 0
             vert.disc = 0
 
-
-if __name__ == '__main__':
-    print('Hello World')
+# TODO:
+# - bfs
+# - dijkstra algorithm
+# - dfs
+# - node degree
+# - clustering, betweeness ..
+# - set weight
