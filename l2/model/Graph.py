@@ -116,11 +116,3 @@ class Graph:
             vert.pred = None
             vert.fin = 0
             vert.disc = 0
-
-# TODO:
-# - bfs
-# - dijkstra algorithm
-# - dfs
-# - node degree
-# - clustering, betweeness ..
-# - set weight
