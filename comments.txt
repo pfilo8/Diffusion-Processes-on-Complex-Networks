@@ -1,0 +1,6 @@
+Comments:
+ - a very thoughtful and clear implementation
+ - proper usage of OOP concepts (e.g. private methods)
+ - no major negative comments
+
+Number of points: 100 
