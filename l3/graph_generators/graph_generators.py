@@ -1,39 +1,42 @@
 import random
 from itertools import combinations
 
-import networkx as nx
+from model import Graph
 
 
 def generate_random_graph(n, p):
-    g = nx.Graph()
-    for u, v in combinations(range(n)):
+    g = Graph()
+    for u, v in combinations(range(n), 2):
         if random.random() < p:
-            g.add_edge(u, v)
+            g.addEdge(u, v)
     return g
 
 
 def generate_connected_graph(n):
-    return generate_random_graph(n, 0)
+    return generate_random_graph(n, 1)
 
 
 def generate_watts_strogatz(n, k, p):
     g = generate_ring_graph(n, k)
-    edges = g.edges()
+    edges = g.getEdges()
     for u, v in edges:
         if random.random() < p:
-            possible_new_vertex = _list_without_elements(n, u, v)
-            new_vertex = random.choice(possible_new_vertex)
-            g.remove_edge(u, v)
-            g.add_edge(u, new_vertex)
+            try:
+                possible_new_vertex = _list_without_elements(n, u.id, v.id)
+                new_vertex = random.choice(possible_new_vertex)
+                g.removeEdge(u.id, v.id)
+                g.addEdge(u.id, new_vertex)
+            except ValueError as e:
+                continue
     return g
 
 
 def generate_ring_graph(n, k):
-    g = nx.Graph()
+    g = Graph()
     nodes = list(range(n))
     for j in range(1, k // 2 + 1):
         targets = nodes[j:] + nodes[0:j]  # first j nodes are now last in list
-        g.add_edges_from(zip(nodes, targets))
+        g.addEdgesFromList(zip(nodes, targets))
     return g
 
 
@@ -46,15 +49,15 @@ def _list_without_elements(n, *args):
 
 def generate_barabasi_albert_graph(n, m):
     g = generate_connected_graph(m)
-    for i in range(m + 1, n):
+    for i in range(m + 1, n+1):
         probas = _calculate_probas(g)
-        possible_vertex = range(0, i)
-        selected_vertex = random.choices(possible_vertex, weights=probas)
-        g.add_node(i, selected_vertex)
+        selected_vertex = random.choices(list(probas.keys()), weights=list(probas.values()), k=1)
+        g.addEdge(i, selected_vertex[0])
     return g
 
 
 def _calculate_probas(g):
-    degrees = list(dict(g.degree()).values())
-    probas = [val / sum(degrees) for val in degrees]
-    return probas
+    degrees = g.getDegrees()
+    suma = sum(degrees.values())
+    toReturn = {node:degree/suma for node, degree in degrees.items()}
+    return toReturn
