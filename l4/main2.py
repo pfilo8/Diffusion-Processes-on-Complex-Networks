@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -14,7 +16,21 @@ def generate_trajectory(n):
     return x, y
 
 
-def plot_trajectory(x, y):
-    plt.figure()
-    plt.scatter(x, y)
-    plt.show()
+def animate_trajectory(x, y):
+    if not os.path.exists('tmp'):
+        os.makedirs('tmp')
+        
+    xlims = [min(x), max(x)]
+    ylims = [min(y), max(y)]
+        
+    for idx, iks, igrek in zip(range(len(x)), x, y):
+        plt.figure()
+        plt.grid()
+        
+        plt.scatter([iks], [igrek])
+        plt.xlim(xlims)
+        plt.ylim(ylims)
+        
+        filepath = os.path.join('tmp', f'{idx}.png')
+        plt.savefig(filepath)
+                               
