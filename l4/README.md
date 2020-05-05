@@ -15,7 +15,8 @@ There is also code responsible for generating animation which can be found in `o
 ## Task 3
 Task 3 was optional. The main aim of this task was to estimate average hit time from specific starting node to all other nodes.
 Implementation of random walking on graph is in `main3.py` file.
-Results for different graph topologies are included in `Ex.3.ipynb` notebook.
+Results of average hitting time for different graph topologies are included in `Ex.3.ipynb` notebook.
+Gifs with animation are in `outputs` directory, files with names of particular graphs.
 
 For this task I`ve used networkx library because I've made this task some time before list requirements and because
 this task is not obligatory I've left implementation as it was :)
