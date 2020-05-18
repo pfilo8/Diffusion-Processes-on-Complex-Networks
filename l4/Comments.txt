@@ -1,0 +1,4 @@
+Comments:
+  - in Pearson’s random walk - the trace left by the moving point is not drawn, which makes it is a bit more difficult to see the actual walk
+
+No. of points: 95
