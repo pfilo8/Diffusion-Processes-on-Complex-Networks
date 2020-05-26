@@ -17,10 +17,10 @@ def qvoter_model_on_graph(G, p, q, eps=0.01, T=1000):
                 G = set_node_opinion(G, spinson, random.choice([-1, 1]))
             else:
                 neighbours = get_neighbors(G, spinson)
-                panel = random.choices(neighbours, k=q)
+                panel = get_panel(neighbours, q)
                 panel_opinions = get_panel_opinions(G, panel)
                 
-                if sum(panel_opinions) == q or sum(panel_opinions) == -q:
+                if all_spinsons_have_same_opinion(panel_opinions):
                     G = set_node_opinion(G, spinson, panel_opinions[0])
                 else:
                     if random.random() < p:
@@ -29,7 +29,7 @@ def qvoter_model_on_graph(G, p, q, eps=0.01, T=1000):
     return history
 
 def init_opinion(G):
-    votes = {node: random.choice([-1,1]) for node in G}
+    votes = {node: 1 for node in G}
     nx.set_node_attributes(G, votes, VOTE)
     return G
 
@@ -42,6 +42,9 @@ def get_neighbors(G, node):
 def get_node_opinion(G, node):
     return G.nodes[node][VOTE]
 
+def get_panel(neighbours, q):
+    return random.sample(neighbours, k=q) if q<=len(neighbours) else neighbours
+
 def get_panel_opinions(G, panel):
     return [get_node_opinion(G, node) for node in panel]
 
@@ -51,3 +54,6 @@ def get_network_opinions(G):
 def set_node_opinion(G, node, opinion):
     G.nodes[node][VOTE] = opinion
     return G
+
+def all_spinsons_have_same_opinion(panel_opinions):
+    return len(set(panel_opinions)) == 1
