@@ -13,7 +13,7 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 PATH_BASEDIR = Path('results')
 
-P = np.arange(0, 0.5, 0.02)
+P = [0.5]
 Q = [3, 4]
 N_STEPS = 100
 GRAPHS = {
@@ -23,14 +23,14 @@ GRAPHS = {
             "n": 100
         }
     },
-    "barabasi-albert-1": {
+    "barabasi-albert": {
         "generator": nx.barabasi_albert_graph,
         "args": {
             "m": 4,
             "n": 100
         }
     },
-    "barabasi-albert-2": {
+    "watts_strogatz-1": {
         "generator": nx.watts_strogatz_graph,
         "args": {
             "n": 100,
@@ -38,7 +38,7 @@ GRAPHS = {
             "p": 0.01
         }
     },
-    "watts_strogatz": {
+    "watts_strogatz-2": {
         "generator": nx.watts_strogatz_graph,
         "args": {
             "n": 100,
