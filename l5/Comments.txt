@@ -1,0 +1,5 @@
+Comments:
+ - a very tasteful, thoughtful implementation, accompanied by pertinent comments
+ - the only comment is that for Ex.3-B I requested only Infected curves being compared to each other for one graph topology for various levels of p (e.g. 3 infected curves for Barabasi Albert, for p=0.3, 0.5 and 0.8, all in plot, to easily observe the actual impact of the value of p)
+ 
+#points: 98
