@@ -13,7 +13,7 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 PATH_BASEDIR = Path('results')
 
-P = [0.5]
+P = np.arange(0, 0.52, 0.02)
 Q = [3, 4]
 N_STEPS = 100
 GRAPHS = {
